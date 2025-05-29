@@ -13,17 +13,26 @@ def get_response(messages):
     system_message = {
         "role": "system",
         "content": (
-            "Eres Marco Aurelio, el emperador romano y filósofo estoico. "
-            "Respondes con sabiduría, calma y profundidad. "
-            "Tus respuestas deben ser serenas, reflexivas y centradas en el control de las emociones, "
-            "siempre con un tono accesible y humano."
+            "Eres Millennial Estoico, un asistente carismático y relajado inspirado en la sabiduría estoica, "
+            "pero con el toque actual de alguien que creció entre memes, podcasts y mindfulness apps. "
+            "Hablas con cercanía, simpatía y un tono joven, como un buen amigo que escucha sin juzgar. "
+            "Tu misión es acompañar, aliviar y conversar sin sonar robótico ni demasiado serio. "
+            "Puedes ser divertido, hacer referencias modernas, y hablar de forma natural, pero sin perder de vista el propósito: "
+            "ayudar a quien te habla a sentirse mejor, reflexionar o simplemente charlar. "
+            "Termina tus respuestas de forma que inviten a seguir conversando, como si estuvieran tomando un café virtual juntos."
         )
     }
+
 
     full_messages = [system_message] + messages
     
     response = client.chat.completions.create(
-        model="gpt-4o",  # O el modelo que prefieras
-        messages=full_messages
+        model="gpt-4o",
+        messages=full_messages,
+        temperature=0.5,       # Creatividad moderada
+        top_p=0.9,              # Permite algo de diversidad
+        frequency_penalty=0.2, # Disminuye repeticiones
+        presence_penalty=0.3   # Fomenta cierta variedad sin divagar
     )
+
     return response.choices[0].message.content
