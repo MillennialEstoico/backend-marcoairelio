@@ -11,7 +11,8 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:8501",
-                   "https://beamish-figolla-a280f2.netlify.app"],  # origen de tu frontend
+                   "https://beamish-figolla-a280f2.netlify.app",
+                   "https://chat.millennialestoico.com"],  # origen de tu frontend
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
